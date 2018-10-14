@@ -1,0 +1,298 @@
+<html ng-app="SantiniGenerator">
+	<head>
+		<title>Santini Generator</title>
+
+		<meta charset="utf-8">
+
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/select.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/select2.css">
+
+		<!-- Javascript -->
+		<script src="js/lib/angular.min.js"></script>
+		<script src="js/lib/ui-bootstrap.min.js"></script>
+		<script src="js/lib/angular-sanitize.js"></script>
+		<script src="js/lib/select.min.js"></script>
+
+		<script src="js/loghi.js"></script>
+		<script src="js/script.js"></script>
+
+		<style type="text/css">
+			.organi td {
+				padding: 10px !important;
+			}
+
+			.canvas {
+				height: 700px;
+				overflow: auto;
+			}
+
+			/* Custom Checkbox from W3Schools */
+			/* Customize the label (the container) */
+			.container_checkmark {
+				display: block;
+				position: relative;
+				padding-left: 35px;
+				margin-bottom: 12px;
+				cursor: pointer;
+				font-size: 22px;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+
+			/* Hide the browser's default checkbox */
+			.container_checkmark input {
+				position: absolute;
+				opacity: 0;
+				cursor: pointer;
+				height: 0;
+				width: 0;
+			}
+
+			/* Create a custom checkbox */
+			.checkmark {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 25px;
+				width: 25px;
+				background-color: #eee;
+			}
+
+			/* On mouse-over, add a grey background color */
+			.container_checkmark:hover input ~ .checkmark {
+				background-color: #ccc;
+			}
+
+			/* When the checkbox is checked, add a blue background */
+			.container_checkmark input:checked ~ .checkmark {
+				background-color: #2196F3;
+			}
+
+			/* Create the checkmark/indicator (hidden when not checked) */
+			.checkmark:after {
+				content: "";
+				position: absolute;
+				display: none;
+			}
+
+			/* Show the checkmark when checked */
+			.container_checkmark input:checked ~ .checkmark:after {
+				display: block;
+			}
+
+			/* Style the checkmark/indicator */
+			.container_checkmark .checkmark:after {
+				left: 9px;
+				top: 5px;
+				width: 5px;
+				height: 10px;
+				border: solid white;
+				border-width: 0 3px 3px 0;
+				-webkit-transform: rotate(45deg);
+				-ms-transform: rotate(45deg);
+				transform: rotate(45deg);
+			}
+		</style>
+
+	</head>
+	<body>
+	<div class="container">
+
+		<h4 class="text-center">Santini Generator</h4>
+
+		<img id="template" src="img/template/template.png" style="display: none;">
+		<img id="current_image" src="" style="display: none;">
+		<img id="fake_logo" src="img/fake_logo.png" style="display: none;">
+
+		<div ng-controller="MainController">
+
+				<div class="row">
+
+					<div class="col-xs-12 col-sm-6">
+
+					  <div class="panel panel-default">
+					    <div class="panel-heading">
+								<b>Preview</b>
+							</div>
+					    <div class="panel-body">
+								<div class="canvas"></div>
+							</div>
+					  </div>
+
+					</div>
+
+					<div class="col-xs-12 col-sm-6">
+
+						<div class="panel panel-default">
+					    <div class="panel-heading">
+								<b>Impostazioni</b>
+							</div>
+					    <div class="panel-body">
+								<div class="text-center">
+
+									Dimensione del testo: <input type="number" ng-model="fontSize" ng-change="addText()">
+									<br>
+									<br>
+
+									<table class="table table-striped organi">
+										<tr>
+											<td>
+												<label class="container_checkmark">
+													<input type="checkbox" ng-model="check.senato" ng-change="addText()">
+													<span class="checkmark"></span>
+												</label>
+											</td>
+											<td>
+												<ui-select ng-model="img.senato" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
+													<ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
+													<ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
+														<img ng-src="{{ logo.url }}" width="90" height="90">
+														<div ng-bind-html="logo.name" style="display: inline"></div>
+													</ui-select-choices>
+												</ui-select>				
+											</td>
+											<td style="width: 450px">
+												Senato accademico:
+												<input type="text" class="form-control" ng-model="text.senato" ng-change="addText()" placeholder="Candidato...">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label class="container_checkmark">
+													<input type="checkbox" ng-model="check.cda" ng-change="addText()">
+													<span class="checkmark"></span>
+												</label>
+											</td>
+											<td>
+												<ui-select ng-model="img.cda" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
+													<ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
+													<ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
+														<img ng-src="{{ logo.url }}" width="90" height="90">
+														<div ng-bind-html="logo.name" style="display: inline"></div>
+													</ui-select-choices>
+												</ui-select>
+											</td>
+											<td style="width: 450px">
+												Consiglio di Amministrazione:
+												<input type="text" class="form-control" ng-model='text.cda' ng-change="addText()" placeholder="Candidato...">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label class="container_checkmark">
+													<input type="checkbox" ng-model="check.ndv" ng-change="addText()">
+													<span class="checkmark"></span>
+												</label>
+											</td>
+											<td>
+												<ui-select ng-model="img.ndv" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
+													<ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
+													<ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
+														<img ng-src="{{ logo.url }}" width="90" height="90">
+														<div ng-bind-html="logo.name" style="display: inline"></div>
+													</ui-select-choices>
+												</ui-select>
+											</td>
+											<td style="width: 450px">
+												Nucleo di Valutazione:
+												<input type="text" class="form-control" ng-model='text.ndv' ng-change="addText()" placeholder="Candidato...">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label class="container_checkmark">
+													<input type="checkbox" ng-model="check.cus" ng-change="addText()">
+													<span class="checkmark"></span>
+												</label>
+											</td>
+											<td>
+												<ui-select ng-model="img.cus" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
+													<ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
+													<ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
+														<img ng-src="{{ logo.url }}" width="90" height="90">
+														<div ng-bind-html="logo.name" style="display: inline"></div>
+													</ui-select-choices>
+												</ui-select>
+											</td>
+											<td style="width: 450px">
+												Comitato per lo Sport Universitario:
+												<input type="text" class="form-control" ng-model='text.cus' ng-change="addText()" placeholder="Candidato...">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label class="container_checkmark">
+													<input type="checkbox" ng-model="check.dip" ng-change="addText()">
+													<span class="checkmark"></span>
+												</label>
+											</td>
+											<td>
+												<ui-select ng-model="img.dip" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
+													<ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
+													<ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
+														<img ng-src="{{ logo.url }}" width="90" height="90">
+														<div ng-bind-html="logo.name" style="display: inline"></div>
+													</ui-select-choices>
+												</ui-select>
+											</td>
+											<td style="width: 450px">
+												Consiglio di Dipartimento:
+												<input type="text" class="form-control" ng-model='text.dip' ng-change="addText()" placeholder="Candidato...">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label class="container_checkmark">
+													<input type="checkbox" ng-model="check.cdl" ng-change="addText()">
+													<span class="checkmark"></span>
+												</label>
+											</td>
+											<td>
+													<ui-select ng-model="img.cdl" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
+														<ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
+														<ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
+															<img ng-src="{{ logo.url }}" width="90" height="90">
+															<div ng-bind-html="logo.name" style="display: inline"></div>
+														</ui-select-choices>
+													</ui-select>
+											</td>
+											<td style=" width: 450px">
+												Corso di Laurea:
+												<input type="text" class="form-control" ng-model='text.cdl' ng-change="addText()" placeholder="Candidato...">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<label class="container_checkmark">
+													<input type="checkbox" ng-model="check.med" ng-change="addText()">
+													<span class="checkmark"></span>
+												</label>
+											</td>
+											<td></td>
+											<td style=" width: 450px">
+												Scuola di medicina:
+												<input type="text" class="form-control" ng-model='text.med' ng-change="addText()" placeholder="Candidato...">
+											</td>
+										</tr>
+									</table>
+								</div>
+
+								<br>
+								<button class="btn btn-large btn-primary" ng-click="create()"><h4>Save Image</h4></button>
+							</div>
+					  </div>
+
+					</div>
+
+				</div>
+
+				<footer> Coded by <a href="http://github.com/Helias">Helias (Stefano Borzì)</a></footer>
+
+			</div>
+		</div> <!-- end container -->
+	</body>
+</html>
