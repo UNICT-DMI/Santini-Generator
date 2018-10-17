@@ -8,8 +8,10 @@
     { name: "DMI Insider", url: "img/DMI_Insider.png" },
     { name: "Futura Sanità", url: "img/Futura_Sanità.png" },
     { name: "CITING", url: "img/CITING.png" },
+    { name: "SpaceWindow", url: "img/SpaceWindow.png" },
     { name: "Libertas", url: "img/Libertas.png" },
     { name: "Actea", url: "img/Actea.png" },
+    { name: "#Studenti", url: "img/Studenti.png" },
     { name: "Sovranisti e Popolari", url: "img/p.png" },
   ];
 
