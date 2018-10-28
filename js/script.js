@@ -34,9 +34,11 @@
       med: { name: "logo vuoto", url: "img/fake_logo.png" },
     };
 
+    $scope.elezioni_data = "elezioni universitarie 23 - 24 ottobre 2018";
     $scope.fontSize = 60;
-
-    $scope.activeTab = 0;
+    $scope.orario_voto = "Si vota dalle 9.00 alle 19.00";
+    $scope.esibire_documento = "Esibire un valido documento di riconoscimento";
+    $scope.utilizzare_matita = "Utilizzare ESCLUSIVAMENTE la matita fornita al seggio";
 
     $scope.loghi = app.loghi;
     $scope.current_logo = $scope.loghi[0];
@@ -56,7 +58,7 @@
     canvas.width = width;
     canvas.height = height;
     canvas.id = 'myCanvas';
-    document.getElementsByClassName("canvas")[0].appendChild(canvas);
+    document.getElementById("canvas").appendChild(canvas);
 
     $scope.addText = () => {
       let ctx = document.getElementById("myCanvas").getContext("2d");
@@ -81,7 +83,7 @@
     	ctx.textAlign = "center";
 
       ctx.font = "bold 18px Arial";
-      ctx.fillText("ELEZIONI UNIVERSITARIE 23 - 24 OTTOBRE 2018", 250, 25);
+      ctx.fillText($scope.elezioni_data.toUpperCase(), 250, 25);
 
       let d = 0;
 
@@ -286,11 +288,11 @@
       ctx.stroke();
 
       ctx.font = "bold 20px Arial";
-      ctx.fillText("Si vota dalle 9.00 alle 19.00".toUpperCase(), 250, d+55);
+      ctx.fillText($scope.orario_voto.toUpperCase(), 250, d+55);
 
       ctx.font = "bold 15px Arial";
-      ctx.fillText("Esibire un valido documento di riconoscimento", 250, d+75);
-      ctx.fillText("Utilizzare ESCLUSIVAMENTE la matita fornita al seggio", 250, d+95);
+      ctx.fillText($scope.esibire_documento, 250, d+75);
+      ctx.fillText($scope.utilizzare_matita, 250, d+95);
     };
 
     $scope.drawText = (ctx, text, x, y) => {
