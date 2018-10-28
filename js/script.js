@@ -21,7 +21,8 @@
       cus: true,
       dip: true,
       cdl: true,
-      med: false
+      med: false,
+      cdl_500: false
     };
 
     $scope.img = {
@@ -239,19 +240,44 @@
         ctx.moveTo(125,145+d);
         ctx.lineTo(450,145+d);
 
-        let img = new Image;
-        img.src = $scope.img.cdl.url;
-        img.onload = ((d) => {
-          return () => {
-            ctx.drawImage(img, 22, 60+d, 90, 90);
+        // draw oblique lines
+        ctx.strokeStyle = "rgba(0, 0, 0, 0.2)";
+        for (let i = 1; i < 10; i++) {
+          ctx.moveTo(12, 57+d+(13*i));
+          ctx.lineTo(12+80-(10*i), 100+57+d);
+        }
 
-            ctx.moveTo(22,60+d);
-            ctx.lineTo(90+22,90+60+d);
-            ctx.moveTo(22,60+90+d);
-            ctx.lineTo(90+22,60+d);
-            ctx.stroke();
-          }
-        })(d);
+        for (let i = 1; i < 35; i++) {
+          ctx.moveTo(12*i, 57+d);
+          ctx.lineTo(12*i+80, 100+57+d);
+        }
+
+        for (let i = 8; i > 1; i--) {
+          ctx.moveTo(395+(10*i), 57+d);
+          ctx.lineTo(410+80, 100+65+d-(10*i));
+        }
+        ctx.stroke();
+
+        ctx.strokeStyle = "rgb(0, 0, 0)";
+
+        if (!$scope.check.cdl_500) {
+          let img = new Image;
+          img.src = $scope.img.cdl.url;
+          img.onload = ((d) => {
+            return () => {
+              ctx.beginPath();
+              ctx.drawImage(img, 22, 60+d, 90, 90);
+
+              ctx.moveTo(22,60+d);
+              ctx.lineTo(90+22,90+60+d);
+              ctx.moveTo(22,60+90+d);
+              ctx.lineTo(90+22,60+d);
+              ctx.stroke();
+            }
+          })(d);
+        }
+
+        ctx.beginPath();
         ctx.fillStyle= "#000";
         ctx.font = "bold 12px Arial";
         ctx.fillText("Corso di Laurea", 230, 72+d);

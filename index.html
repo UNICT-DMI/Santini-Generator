@@ -186,7 +186,13 @@
 												</td>
 												<td style=" width: 450px">
 													Corso di Laurea:
-													<input type="text" class="form-control" ng-model='text.cdl' ng-change="addText()" placeholder="Candidato...">
+													<label>
+														<input type="text" class="form-control" ng-model='text.cdl' ng-change="addText()" placeholder="Candidato...">
+													</label>
+													<label>
+														<input type="checkbox" ng-model="check.cdl_500" ng-change="addText()">
+														<small>< 500 iscritti</small>
+													</label>
 												</td>
 											</tr>
 											<tr>
