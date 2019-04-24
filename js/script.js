@@ -9,18 +9,20 @@
       cda : "",
       ndv : "",
       cus : "",
+      ersu: "",
       dip : "",
       cdl : "",
       med : ""
     };
 
     $scope.check = {
-      senato: true,
-      cda: true,
-      ndv: true,
-      cus: true,
-      dip: true,
-      cdl: true,
+      senato: false,
+      cda: false,
+      ndv: false,
+      cus: false,
+      ersu:true,
+      dip: false,
+      cdl: false,
       med: false,
       cdl_500: false
     };
@@ -30,14 +32,16 @@
       cda: { name: "logo vuoto", url: "img/fake_logo.png" },
       ndv: { name: "logo vuoto", url: "img/fake_logo.png" },
       cus: { name: "logo vuoto", url: "img/fake_logo.png" },
+      ersu:{ name: "logo vuoto", url: "img/fake_logo.png" },
       dip: { name: "logo vuoto", url: "img/fake_logo.png" },
       cdl: { name: "logo vuoto", url: "img/fake_logo.png" },
       med: { name: "logo vuoto", url: "img/fake_logo.png" },
     };
 
-    $scope.elezioni_data = "elezioni universitarie 23 - 24 ottobre 2018";
+    $scope.elezioni_data = "elezioni universitarie 14 - 15 maggio 2019";
     $scope.fontSize = 60;
-    $scope.orario_voto = "Si vota dalle 9.00 alle 19.00";
+    $scope.orario_voto = "Si vota dalle 9:00 alle 19:00 giorno 14";
+    $scope.orario_voto2 = "           e dalle 9:00 alle 14:00 giorno 15";
     $scope.esibire_documento = "Esibire un valido documento di riconoscimento";
     $scope.utilizzare_matita = "Utilizzare ESCLUSIVAMENTE la matita fornita al seggio";
 
@@ -205,6 +209,35 @@
         d += 125;
       }
 
+      if ($scope.check.ersu) {
+        ctx.fillStyle="#fc8511";
+        ctx.fillRect(12,57+d,475,100);
+        ctx.moveTo(125,145+d);
+        ctx.lineTo(450,145+d);
+
+        let img = new Image;
+        img.src = $scope.img.ersu.url;
+        img.onload = ((d) => {
+          return () => {
+            ctx.drawImage(img, 22, 60+d, 90, 90);
+
+            ctx.moveTo(22,60+d);
+            ctx.lineTo(90+22,90+60+d);
+            ctx.moveTo(22,60+90+d);
+            ctx.lineTo(90+22,60+d);
+            ctx.stroke();
+          }
+        })(d);
+        ctx.fillStyle = "#000";
+        ctx.font = "bold 12px Arial";
+        ctx.fillText("Consiglio di Amministrazione ERSU", 230, 72+d);
+        ctx.font = "12px Arial";
+        ctx.fillText("(Scheda Arancione)", 400, 72+d);
+        $scope.drawText(ctx, $scope.text.ersu, 290, 130+d);
+
+        d += 125;
+      }
+
       if ($scope.check.dip) {
         ctx.fillStyle="#98bce0";
         ctx.fillRect(12,57+d,475,100);
@@ -315,10 +348,11 @@
 
       ctx.font = "bold 20px Arial";
       ctx.fillText($scope.orario_voto.toUpperCase(), 250, d+55);
+      ctx.fillText($scope.orario_voto2.toUpperCase(), 250, d+55+25);
 
       ctx.font = "bold 15px Arial";
-      ctx.fillText($scope.esibire_documento, 250, d+75);
-      ctx.fillText($scope.utilizzare_matita, 250, d+95);
+      ctx.fillText($scope.esibire_documento, 250, d+75+25);
+      ctx.fillText($scope.utilizzare_matita, 250, d+95+25);
     };
 
     $scope.drawText = (ctx, text, x, y) => {
