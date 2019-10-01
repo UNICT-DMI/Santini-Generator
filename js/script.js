@@ -23,8 +23,8 @@
       ersu:false,
       dip: true,
       cdl: true,
-      med: true,
-      cdl_500: true
+      med: false,
+      cdl_500: false
     };
 
     $scope.img = {
