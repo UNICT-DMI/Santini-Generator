@@ -16,15 +16,15 @@
     };
 
     $scope.check = {
-      senato: false,
-      cda: false,
-      ndv: false,
-      cus: false,
-      ersu:true,
-      dip: false,
-      cdl: false,
-      med: false,
-      cdl_500: false
+      senato: true,
+      cda: true,
+      ndv: true,
+      cus: true,
+      ersu:false,
+      dip: true,
+      cdl: true,
+      med: true,
+      cdl_500: true
     };
 
     $scope.img = {
