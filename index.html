@@ -1,264 +1,265 @@
 <html ng-app="SantiniGenerator">
-	<head>
-		<title>Santini Generator</title>
 
-		<meta charset="utf-8">
+<head>
+    <title>Santini Generator</title>
 
-		<!-- CSS -->
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="css/select.min.css"/>
-		<link rel="stylesheet" type="text/css" href="css/select2.css">
-		<link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta charset="utf-8">
 
-		<!-- Javascript -->
-		<script src="js/lib/angular.min.js"></script>
-		<script src="js/lib/ui-bootstrap.min.js"></script>
-		<script src="js/lib/angular-sanitize.js"></script>
-		<script src="js/lib/select.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/select.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/select2.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
-		<script src="js/loghi.js"></script>
-		<script src="js/script.js"></script>
+    <!-- Javascript -->
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/ui-bootstrap.min.js"></script>
+    <script src="js/lib/angular-sanitize.js"></script>
+    <script src="js/lib/select.min.js"></script>
 
-	</head>
-	<body>
-	<div class="container">
+    <script src="js/loghi.js"></script>
+    <script src="js/script.js"></script>
 
-		<h4 class="text-center">Santini Generator</h4>
+</head>
 
-		<img id="template" src="img/template/template.png" style="display: none;">
-		<img id="current_image" src="" style="display: none;">
-		<img id="fake_logo" src="img/fake_logo.png" style="display: none;">
+<body>
+    <div class="container">
 
-		<div ng-controller="MainController">
+        <h4 class="text-center">Santini Generator</h4>
 
-				<div class="row">
+        <div ng-controller="MainController">
 
-					<div class="col-xs-12 col-sm-6">
+            <div class="row">
 
-					  <div class="panel panel-default">
-					    <div class="panel-heading">
-								<b>Anteprima</b>
-							</div>
-					    <div class="panel-body">
-								<div id="canvas" class="box-canvas"></div>
-							</div>
-					  </div>
+                <div class="col-xs-12 col-sm-6">
 
-					</div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <b>Anteprima</b>
+                        </div>
+                        <div class="panel-body">
+                            <div id="canvas" class="box-canvas"></div>
+                        </div>
+                    </div>
 
-					<div class="col-xs-12 col-sm-6">
+                </div>
 
-						<div class="panel panel-default">
-					    <div class="panel-heading">
-								<b>Impostazioni</b>
-							</div>
-					    <div class="panel-body">
-								<div class="text-center">
+                <div class="col-xs-12 col-sm-6">
 
-									<input type="text" class="form-control" ng-model="elezioni_data" ng-change="addText()">
-									<br>
-									Dimensione del testo: <input type="number" ng-model="fontSize" ng-change="addText()">
-									<br>
-									<br>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <b>Impostazioni</b>
+                        </div>
+                        <div class="panel-body">
+                            <div class="text-center">
 
-									<div class="box-organi">
-										<table class="table table-striped organi">
-											<tr style="background-color: #FFFF8D">
-												<td>
-													<label class="container_checkmark">
+                                <input type="text" class="form-control" ng-model="elezioni_data" ng-change="addText()">
+                                <br> Dimensione del testo: <input type="number" ng-model="fontSize" ng-change="addText()">
+                                <br>
+                                <br>
+
+                                <div class="box-organi">
+                                    <table class="table table-striped organi">
+                                        <tr style="background-color: #FFFF8D">
+                                            <td>
+                                                <label class="container_checkmark">
 														<input type="checkbox" ng-model="check.senato" ng-change="addText()">
 														<span class="checkmark"></span>
 													</label>
-												</td>
-												<td>
-													<ui-select ng-model="img.senato" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
-														<ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
-														<ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
-															<img ng-src="{{ logo.url }}" width="90" height="90">
-															<div ng-bind-html="logo.name" style="display: inline"></div>
-														</ui-select-choices>
-													</ui-select>				
-												</td>
-												<td style="width: 450px">
-													Senato accademico:
-													<input type="text" class="form-control" ng-model="text.senato" ng-change="addText()" placeholder="Candidato...">
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<label class="container_checkmark">
+                                            </td>
+                                            <td>
+                                                <ui-select ng-model="img.senato" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
+                                                    <ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
+                                                    <ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
+                                                        <img ng-src="{{ logo.url }}" width="90" height="90">
+                                                        <div ng-bind-html="logo.name" style="display: inline"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </td>
+                                            <td style="width: 450px">
+                                                Senato accademico:
+                                                <input type="text" class="form-control" ng-model="text.senato" ng-change="addText()" placeholder="Candidato...">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="container_checkmark">
 														<input type="checkbox" ng-model="check.cda" ng-change="addText()">
 														<span class="checkmark"></span>
 													</label>
-												</td>
-												<td>
-													<ui-select ng-model="img.cda" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
-														<ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
-														<ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
-															<img ng-src="{{ logo.url }}" width="90" height="90">
-															<div ng-bind-html="logo.name" style="display: inline"></div>
-														</ui-select-choices>
-													</ui-select>
-												</td>
-												<td style="width: 450px">
-													Consiglio di Amministrazione:
-													<input type="text" class="form-control" ng-model='text.cda' ng-change="addText()" placeholder="Candidato...">
-												</td>
-											</tr>
-											<tr style="background-color: #F8BBD0">
-												<td>
-													<label class="container_checkmark">
+                                            </td>
+                                            <td>
+                                                <ui-select ng-model="img.cda" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
+                                                    <ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
+                                                    <ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
+                                                        <img ng-src="{{ logo.url }}" width="90" height="90">
+                                                        <div ng-bind-html="logo.name" style="display: inline"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </td>
+                                            <td style="width: 450px">
+                                                Consiglio di Amministrazione:
+                                                <input type="text" class="form-control" ng-model='text.cda' ng-change="addText()" placeholder="Candidato...">
+                                            </td>
+                                        </tr>
+                                        <tr style="background-color: #F8BBD0">
+                                            <td>
+                                                <label class="container_checkmark">
 														<input type="checkbox" ng-model="check.ndv" ng-change="addText()">
 														<span class="checkmark"></span>
 													</label>
-												</td>
-												<td>
-													<ui-select ng-model="img.ndv" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
-														<ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
-														<ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
-															<img ng-src="{{ logo.url }}" width="90" height="90">
-															<div ng-bind-html="logo.name" style="display: inline"></div>
-														</ui-select-choices>
-													</ui-select>
-												</td>
-												<td style="width: 450px">
-													Nucleo di Valutazione:
-													<input type="text" class="form-control" ng-model='text.ndv' ng-change="addText()" placeholder="Candidato...">
-												</td>
-											</tr>
-											<tr style="background-color: #A5D6A7">
-												<td>
-													<label class="container_checkmark">
+                                            </td>
+                                            <td>
+                                                <ui-select ng-model="img.ndv" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
+                                                    <ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
+                                                    <ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
+                                                        <img ng-src="{{ logo.url }}" width="90" height="90">
+                                                        <div ng-bind-html="logo.name" style="display: inline"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </td>
+                                            <td style="width: 450px">
+                                                Nucleo di Valutazione:
+                                                <input type="text" class="form-control" ng-model='text.ndv' ng-change="addText()" placeholder="Candidato...">
+                                            </td>
+                                        </tr>
+                                        <tr style="background-color: #A5D6A7">
+                                            <td>
+                                                <label class="container_checkmark">
 														<input type="checkbox" ng-model="check.cus" ng-change="addText()">
 														<span class="checkmark"></span>
 													</label>
-												</td>
-												<td>
-													<ui-select ng-model="img.cus" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
-														<ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
-														<ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
-															<img ng-src="{{ logo.url }}" width="90" height="90">
-															<div ng-bind-html="logo.name" style="display: inline"></div>
-														</ui-select-choices>
-													</ui-select>
-												</td>
-												<td style="width: 450px">
-													Comitato per lo Sport Universitario:
-													<input type="text" class="form-control" ng-model='text.cus' ng-change="addText()" placeholder="Candidato...">
-												</td>
-											</tr>
-											<tr style="background-color: #fc8511">
-												<td>
-													<label class="container_checkmark">
+                                            </td>
+                                            <td>
+                                                <ui-select ng-model="img.cus" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
+                                                    <ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
+                                                    <ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
+                                                        <img ng-src="{{ logo.url }}" width="90" height="90">
+                                                        <div ng-bind-html="logo.name" style="display: inline"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </td>
+                                            <td style="width: 450px">
+                                                Comitato per lo Sport Universitario:
+                                                <input type="text" class="form-control" ng-model='text.cus' ng-change="addText()" placeholder="Candidato...">
+                                            </td>
+                                        </tr>
+                                        <tr style="background-color: #fc8511">
+                                            <td>
+                                                <label class="container_checkmark">
 														<input type="checkbox" ng-model="check.ersu" ng-change="addText()">
 														<span class="checkmark"></span>
 													</label>
-												</td>
-												<td>
-													<ui-select ng-model="img.ersu" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
-														<ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
-														<ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
-															<img ng-src="{{ logo.url }}" width="90" height="90">
-															<div ng-bind-html="logo.name" style="display: inline"></div>
-														</ui-select-choices>
-													</ui-select>
-												</td>
-												<td style="width: 450px; font-weight: bold">
-													Consiglio di Amministrazione ERSU:
-													<input type="text" class="form-control" ng-model='text.ersu' ng-change="addText()" placeholder="Candidato...">
-												</td>
-											</tr>
-											<tr style="background-color: #B3E5FC">
-												<td>
-													<label class="container_checkmark">
+                                            </td>
+                                            <td>
+                                                <ui-select ng-model="img.ersu" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
+                                                    <ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
+                                                    <ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
+                                                        <img ng-src="{{ logo.url }}" width="90" height="90">
+                                                        <div ng-bind-html="logo.name" style="display: inline"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </td>
+                                            <td style="width: 450px; font-weight: bold">
+                                                Consiglio di Amministrazione ERSU:
+                                                <input type="text" class="form-control" ng-model='text.ersu' ng-change="addText()" placeholder="Candidato...">
+                                            </td>
+                                        </tr>
+                                        <tr style="background-color: #B3E5FC">
+                                            <td>
+                                                <label class="container_checkmark">
 														<input type="checkbox" ng-model="check.dip" ng-change="addText()">
 														<span class="checkmark"></span>
 													</label>
-												</td>
-												<td>
-													<ui-select ng-model="img.dip" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
-														<ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
-														<ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
-															<img ng-src="{{ logo.url }}" width="90" height="90">
-															<div ng-bind-html="logo.name" style="display: inline"></div>
-														</ui-select-choices>
-													</ui-select>
-												</td>
-												<td style="width: 450px">
-													Consiglio di Dipartimento:
-													<input type="text" class="form-control" ng-model='text.dip' ng-change="addText()" placeholder="Candidato...">
-												</td>
-											</tr>
-											<tr style="background-color: #E0E0E0">
-												<td>
-													<label class="container_checkmark">
+                                            </td>
+                                            <td>
+                                                <ui-select ng-model="img.dip" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
+                                                    <ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
+                                                    <ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
+                                                        <img ng-src="{{ logo.url }}" width="90" height="90">
+                                                        <div ng-bind-html="logo.name" style="display: inline"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </td>
+                                            <td style="width: 450px">
+                                                Consiglio di Dipartimento:
+                                                <input type="text" class="form-control" ng-model='text.dip' ng-change="addText()" placeholder="Candidato...">
+                                            </td>
+                                        </tr>
+                                        <tr style="background-color: #E0E0E0">
+                                            <td>
+                                                <label class="container_checkmark">
 														<input type="checkbox" ng-model="check.cdl" ng-change="addText()">
 														<span class="checkmark"></span>
 													</label>
-												</td>
-												<td>
-														<ui-select ng-model="img.cdl" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
-															<ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
-															<ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
-																<img ng-src="{{ logo.url }}" width="90" height="90">
-																<div ng-bind-html="logo.name" style="display: inline"></div>
-															</ui-select-choices>
-														</ui-select>
-												</td>
-												<td style=" width: 450px">
-													Corso di Laurea:
-													<label>
+                                            </td>
+                                            <td>
+                                                <ui-select ng-model="img.cdl" theme="select2" ng-disabled="disabled" ng-change="addText()" class="form-control" style="width: 110px; height: 65px; border: none">
+                                                    <ui-select-match placeholder="Logo" style="width: 90px; height: 50px; background-color: transparent; border:none"><img ng-src="{{ $select.selected.url }}" width="45" height="45"> {{ $select.selected.name }}</ui-select-match>
+                                                    <ui-select-choices repeat="logo in (loghi | filter: $select.search)" style="width: 300px; height: 200px; background-color: #fff">
+                                                        <img ng-src="{{ logo.url }}" width="90" height="90">
+                                                        <div ng-bind-html="logo.name" style="display: inline"></div>
+                                                    </ui-select-choices>
+                                                </ui-select>
+                                            </td>
+                                            <td style=" width: 450px">
+                                                Corso di Laurea:
+                                                <label>
 														<input type="text" class="form-control" ng-model='text.cdl' ng-change="addText()" placeholder="Candidato...">
 													</label>
-													<label>
+                                                <label>
 														<input type="checkbox" ng-model="check.cdl_500" ng-change="addText()">
 														<small style="font-size: 10px">< 500 iscritti</small>
 													</label>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<label class="container_checkmark">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label class="container_checkmark">
 														<input type="checkbox" ng-model="check.med" ng-change="addText()">
 														<span class="checkmark"></span>
 													</label>
-												</td>
-												<td></td>
-												<td style=" width: 450px">
-													Scuola di medicina:
-													<input type="text" class="form-control" ng-model='text.med' ng-change="addText()" placeholder="Candidato...">
-												</td>
-											</tr>
-										</table>
-									</div>
+                                            </td>
+                                            <td></td>
+                                            <td style=" width: 450px">
+                                                Scuola di medicina:
+                                                <input type="text" class="form-control" ng-model='text.med' ng-change="addText()" placeholder="Candidato...">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
 
-									<br>
-									<input type="text" class="form-control" ng-model="orario_voto" ng-change="addText()">		
+                                <br>
+                                <input type="text" class="form-control" ng-model="orario_voto" ng-change="addText()">
 
-									<br>
-									<input type="text" class="form-control" ng-model="esibire_documento" ng-change="addText()">		
+                                <br>
+                                <input type="text" class="form-control" ng-model="orario_voto2" ng-change="addText()">
 
-									<br>
-									<input type="text" class="form-control" ng-model="utilizzare_matita" ng-change="addText()">		
+                                <br>
+                                <input type="text" class="form-control" ng-model="esibire_documento" ng-change="addText()">
 
-									<br>
-									<button class="btn btn-large btn-primary" ng-click="create()"><h4>Salva Immagine</h4></button>
-								</div>
-							</div>
+                                <br>
+                                <input type="text" class="form-control" ng-model="utilizzare_matita" ng-change="addText()">
 
-					  </div>
+                                <br>
+                                <button class="btn btn-large btn-primary" ng-click="create()"><h4>Salva Immagine</h4></button>
+                            </div>
+                        </div>
 
-					</div>
+                    </div>
 
-				</div>
+                </div>
 
-				<footer>
-					Coded by <a href="http://github.com/Helias">Helias (Stefano Borzì)</a>
-					<br>
-					Telegram <a href="https://t.me/Helias">@Helias</a>
-				</footer>
+            </div>
 
-			</div>
-		</div> <!-- end container -->
-	</body>
+            <footer>
+                Coded by <a href="http://github.com/Helias">Helias (Stefano Borzì)</a>
+                <br> Telegram <a href="https://t.me/Helias">@Helias</a>
+            </footer>
+
+        </div>
+    </div>
+    <!-- end container -->
+</body>
+
 </html>
