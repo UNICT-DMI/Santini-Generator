@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    let app = angular.module('SantiniGenerator');
+    const app = angular.module('SantiniGenerator');
     app.controller('MainController', function($scope) {
 
         $scope.text = {
@@ -38,10 +38,10 @@
             med: { name: "logo vuoto", url: "img/fake_logo.png" },
         };
 
-        $scope.elezioni_data = "elezioni universitarie 14 - 15 maggio 2019";
+        $scope.elezioni_data = "elezioni universitarie 25 - 26 maggio 2021";
         $scope.fontSize = 60;
-        $scope.orario_voto = "Si vota dalle 9:00 alle 19:00 giorno 14";
-        $scope.orario_voto2 = "e dalle 9:00 alle 14:00 giorno 15";
+        $scope.orario_voto = "";
+        $scope.orario_voto2 = "";
         $scope.esibire_documento = "Esibire un valido documento di riconoscimento";
         $scope.utilizzare_matita = "Utilizzare ESCLUSIVAMENTE la matita fornita al seggio";
 
