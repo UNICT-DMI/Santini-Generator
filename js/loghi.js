@@ -29,7 +29,7 @@
     { name: "AZIONE UNIVERSITARIA AD MAIORA",                          url: "img/loghi/AZIONE UNIVERSITARIA AD MAIORA.jpg" },
     { name: "AZIONE UNIVERSITARIA CONTROCAMPUS",                       url: "img/loghi/AZIONE UNIVERSITARIA CONTROCAMPUS.jpg" },
     { name: "AZIONE UNIVERSITARIA",                                    url: "img/loghi/AZIONE UNIVERSITARIA.jpg" },
-    { name: "CITING",                                                  url: "img/loghi/CITING.jpg" },
+    { name: "CITING",                                                  url: "img/loghi/CITING.png" },
     { name: "CONTROCAMPUS",                                            url: "img/loghi/CONTROCAMPUS.jpg" },
     { name: "CONTROCAMPUS ‐ POPOLO DEGLI STUDENTI ‐ ARES",             url: "img/loghi/CONTROCAMPUS ‐ POPOLO DEGLI STUDENTI ‐ ARES.jpg" },
     { name: "CONTROCAMPUS ‐ POPOLO DEGLI STUDENTI",                    url: "img/loghi/CONTROCAMPUS ‐ POPOLO DEGLI STUDENTI.jpg" },
