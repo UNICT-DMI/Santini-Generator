@@ -127,6 +127,7 @@
     { name: "RIPARTIAMO UNICT",                                        url: "img/loghi/ripartiamo unict.jpg" },
     { name: "SIAMO FUTURO - LIBERTAS - ORIZZONTE",                     url: "img/loghi/siamo futuro - libertas - orizzonte.jpg" },
     { name: "ORIZZONTE - SANITÀ",                                      url: "img/loghi/orizzonte-sanità.png" },
+    { name: "C0D1NG",                                                  url: "img/loghi/C0d1ng.png" },
   ];
 
 }());

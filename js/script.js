@@ -42,8 +42,8 @@
         $scope.fontSize = 60;
         $scope.orario_voto = "";
         $scope.orario_voto2 = "";
-        $scope.esibire_documento = "Esibire un valido documento di riconoscimento";
-        $scope.utilizzare_matita = "Utilizzare ESCLUSIVAMENTE la matita fornita al seggio";
+        $scope.esibire_documento = "";
+        $scope.utilizzare_matita = "";
 
         $scope.loghi = app.loghi;
         $scope.current_logo = $scope.loghi[0];
