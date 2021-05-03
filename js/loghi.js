@@ -124,6 +124,9 @@
     { name: "UNYDEA",                                                  url: "img/loghi/UNYDEA.jpg" },
     { name: "VOLJA",                                                   url: "img/loghi/VOLJA.jpg" },
     { name: "WE LOVE UNICT",                                           url: "img/loghi/WE LOVE UNICT.jpg" },
+    { name: "RIPARTIAMO UNICT",                                        url: "img/loghi/ripartiamo unict.jpg" },
+    { name: "SIAMO FUTURO - LIBERTAS - ORIZZONTE",                     url: "img/loghi/siamo futuro - libertas - orizzonte.jpg" },
+    { name: "ORIZZONTE - SANITÀ",                                      url: "img/loghi/orizzonte-sanità.png" },
   ];
 
 }());
